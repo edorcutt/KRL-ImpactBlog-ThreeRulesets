@@ -1,0 +1,15 @@
+Kynetx Impact 2011 Blog Demo with Three Rulesets
+
+This project was part of my presentation at Kynetx Impact 2011. The topic of the presentation was on the development of multiple ruleset Kynetx applications. A baseline for this demo was provided in the previous post where we built a working website blog using a single Kynetx ruleset. So with our baseline in place let's head in the direction of our goal ... building a web application with multiple Kynetx rulesets!
+
+To keep the focus of this project on how to use multiple Kynetx rulesets we are using the well understood problem domain of a website blog. We've all seen them and many of us have coded a blog I expect. So as in the previous project we will delegate the View portion of the application to a single HTML file which has been modified to include a series of hidden divs. Each div holds the contents of a page within the blog (e.g. Home, About, Post).
+
+The motivation for using multiple ruleset could be prompted by a variety of reasons. At the very least it will give you the ability to divide-n-conquer the application which needs to be built. Here is one set of criteria for division ... Controller for basic navigation, Model for data abstraction and the third for Acess control. So while we know that it is possible to build the blog with a single ruleset, let's see how a group of three rulesets can be used in a cooperative manner to achieve the same end result.
+
+The first ruleset will be deployed using site tags to provide basic navigation. When the blog web page is first loaded the Kynetx site tags will fire the initialization rule to bind onclick events to each of the site navigation elements (Home, About & Post.) In addition, the rule will also raise an explict event into the second ruleset to initialize the Data store. For completeness the first ruleset has rules which will respond to each of the three onclick events.
+
+The second ruleset provides a Data store. The blog post data is stored in a Application variable which is only accessible within the scope of this ruleset. So it would be possible to implement a Kynetx ruleset to provide data encapsulation and data abstraction. Alas this demo implementation falls short of providing complete data encapsulation. For simplicity sake this ruleset also updates the View directly. But hopefully you get a glimpse of the opportunity here.
+
+Please also notice that the binding of the onsubmit for the form is done within the initialization rule in the Data store ruleset. This was intentional, since the scope of the binding is within the single ruleset. As a result, any changes to the data structure would isolate code changes to this ruleset.
+
+Access to Post to the blog is controlled by the third, and final, ruleset. Until this ruleset is fired the Post navigation option is hidden. While certainly not a foolproof security scheme, it do suggestion an interesting option. This ruleset could be deployed as either a browser extension or even a bookmarklet.
