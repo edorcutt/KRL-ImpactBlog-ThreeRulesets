@@ -13,3 +13,5 @@ The second ruleset provides a Data store. The blog post data is stored in a Appl
 Please also notice that the binding of the onsubmit for the form is done within the initialization rule in the Data store ruleset. This was intentional, since the scope of the binding is within the single ruleset. As a result, any changes to the data structure would isolate code changes to this ruleset.
 
 Access to Post to the blog is controlled by the third, and final, ruleset. Until this ruleset is fired the Post navigation option is hidden. While certainly not a foolproof security scheme, it do suggestion an interesting option. This ruleset could be deployed as either a browser extension or even a bookmarklet.
+
+Online Demo: http://www.lobosllc.com/demo/impactblog/index.html
